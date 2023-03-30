@@ -75,7 +75,7 @@ def Short(A_0, Gamma, l, taille, Omega, Eta, dt, Theta):
     B=Bbar*np.ones((taille,taille))
 
     ##Simulation
-    for t in range(730):
+    for t in range(200):
         #Blame : Matrice qui permet simplement de ne pas compter deux fois un criminel au cours d'une période dt, sachant qu'il peut avoir bougé
         Blame=np.zeros((taille,taille),dtype=np.int32)
 
@@ -136,10 +136,14 @@ def Short(A_0, Gamma, l, taille, Omega, Eta, dt, Theta):
                         Criminel[i,j]-=1
 
                 ##Recalcul de B[i,j]
-                D=B[i,j]*(1-Omega*dt)+Theta*E
+                neigh=voisins(taille,i,j)
+                U=0
+                for k in neigh :
+                    U+=(B[k[0],k[1]])
+                D=((1-Eta)*B[i,j]+(Eta/len(neigh))*U)*(1-Omega*dt)+Theta*E
                 B[i,j]=D
                 A[i,j]=A_0+B[i,j]
-
+    
     ##Interface graphique
     x=[]
     y=[]
