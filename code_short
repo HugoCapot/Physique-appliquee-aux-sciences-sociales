@@ -33,6 +33,8 @@ def voisins(n,i,j):
         return [(i+1,j),(i-1,j),(i,j-1),(i,j+1)]
 
 ###Paramètres et les valeurs prises dans l'article
+#Paramètres identiques pour toutes les simulations : 
+    #A_0 = 1/30 ; l=1 ; taille = 128 ; Omega = 1/15 ; dt = 1/100
 #Situation a :
     #Gamma = 0.019 ; Eta = 0.2 ; Theta = 0.56
     #Short(1/30,0.019,1,128,1/15,0.2,1/100,0.56)
